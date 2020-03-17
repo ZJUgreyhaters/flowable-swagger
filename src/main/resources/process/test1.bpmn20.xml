@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="test1" name="test1" isExecutable="true">
+    <documentation>This is my first flowable process.</documentation>
+    <startEvent id="startEvent1" flowable:formFieldValidation="true"></startEvent>
+    <userTask id="cert" name="certificate" flowable:candidateUsers="athena" flowable:formFieldValidation="true">
+      <extensionElements>
+        <modeler:user-info-email-athena xmlns:modeler="http://flowable.org/modeler"><![CDATA[18867139077@163.com]]></modeler:user-info-email-athena>
+        <modeler:user-info-firstname-athena xmlns:modeler="http://flowable.org/modeler"><![CDATA[Chen]]></modeler:user-info-firstname-athena>
+        <modeler:user-info-lastname-athena xmlns:modeler="http://flowable.org/modeler"><![CDATA[athena]]></modeler:user-info-lastname-athena>
+        <modeler:activiti-idm-candidate-user xmlns:modeler="http://flowable.org/modeler"><![CDATA[true]]></modeler:activiti-idm-candidate-user>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <userTask id="auth" name="authentication" flowable:candidateGroups="dev" flowable:formFieldValidation="true">
+      <extensionElements>
+        <modeler:group-info-name-dev xmlns:modeler="http://flowable.org/modeler"><![CDATA[developer]]></modeler:group-info-name-dev>
+        <modeler:activiti-idm-candidate-group xmlns:modeler="http://flowable.org/modeler"><![CDATA[true]]></modeler:activiti-idm-candidate-group>
+        <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[true]]></modeler:initiator-can-complete>
+      </extensionElements>
+    </userTask>
+    <endEvent id="sid-5CF561EB-3C99-4BBC-B4F9-07000E756965"></endEvent>
+    <sequenceFlow id="sid-2D59CDFF-3BD0-4566-9BBB-CB058462C2BB" sourceRef="cert" targetRef="sid-5CF561EB-3C99-4BBC-B4F9-07000E756965"></sequenceFlow>
+    <sequenceFlow id="seq1" sourceRef="startEvent1" targetRef="auth"></sequenceFlow>
+    <sequenceFlow id="seq2" sourceRef="auth" targetRef="cert">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approve==true}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_test1">
+    <bpmndi:BPMNPlane bpmnElement="test1" id="BPMNPlane_test1">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="cert" id="BPMNShape_cert">
+        <omgdc:Bounds height="80.0" width="100.0" x="480.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="auth" id="BPMNShape_auth">
+        <omgdc:Bounds height="80.0" width="100.0" x="255.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-5CF561EB-3C99-4BBC-B4F9-07000E756965" id="BPMNShape_sid-5CF561EB-3C99-4BBC-B4F9-07000E756965">
+        <omgdc:Bounds height="28.0" width="28.0" x="705.0" y="161.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="seq2" id="BPMNEdge_seq2">
+        <omgdi:waypoint x="354.94999999983776" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="seq1" id="BPMNEdge_seq1">
+        <omgdi:waypoint x="129.94999949366624" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="254.99999999993574" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-2D59CDFF-3BD0-4566-9BBB-CB058462C2BB" id="BPMNEdge_sid-2D59CDFF-3BD0-4566-9BBB-CB058462C2BB">
+        <omgdi:waypoint x="579.9499999999675" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
