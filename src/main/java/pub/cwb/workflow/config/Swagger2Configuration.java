@@ -2,6 +2,9 @@ package pub.cwb.workflow.config;
 
 
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +24,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class Swagger2Configuration {
+    private static final Logger logger = LoggerFactory.getLogger(Swagger2Configuration.class);
+    @Value("${server.port}")
+    String port;
+
     /**
      * 创建API应用
      * apiInfo() 增加API相关信息
@@ -33,6 +40,7 @@ public class Swagger2Configuration {
     @ConditionalOnMissingBean
     @Bean
     public Docket createRestApi() {
+        logger.info("Swagger - API DOC avaliable : " + "http://localhost:" + port + "/swagger-ui.html");
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
