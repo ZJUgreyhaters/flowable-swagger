@@ -1,4 +1,4 @@
-package pub.cwb.workflow.controller;
+package pub.cwb.workflow.workflowcontroller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

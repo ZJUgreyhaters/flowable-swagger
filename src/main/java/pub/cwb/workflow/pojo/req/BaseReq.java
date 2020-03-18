@@ -10,4 +10,8 @@ public class BaseReq {
     private Map<String, Object> localVars;
 
     private String processDefKey;
+
+    private String userId;
+
+
 }

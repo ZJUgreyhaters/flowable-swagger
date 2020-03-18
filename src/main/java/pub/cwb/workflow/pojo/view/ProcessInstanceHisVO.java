@@ -1,26 +1,14 @@
 package pub.cwb.workflow.pojo.view;
 
 import lombok.Data;
-import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.engine.history.HistoricProcessInstance;
 
 import java.util.Date;
 import java.util.Map;
 
 @Data
-public class ProcessInstanceVO {
+public class ProcessInstanceHisVO {
     private String Id;
-
-    private boolean isEnded;
-
-    private String ActivityId;
-
-    private String ProcessInstanceId;
-
-    private String ParentId;
-
-    private String SuperExecutionId;
-
-    private String RootProcessInstanceId;
 
     private String ProcessDefinitionId;
 
@@ -46,18 +34,12 @@ public class ProcessInstanceVO {
 
     private Date StartTime;
 
+    private Date EndTime;
+
     private String StartUserId;
 
-    ProcessInstanceVO() {}
-
-    public ProcessInstanceVO(ProcessInstance instance) {
+    public ProcessInstanceHisVO(HistoricProcessInstance instance) {
         this.Id = instance.getId();
-        this.isEnded = instance.isEnded();
-        this.ActivityId = instance.getActivityId();
-        this.ProcessInstanceId = instance.getProcessInstanceId();
-        this.ParentId = instance.getParentId();
-        this.SuperExecutionId = instance.getSuperExecutionId();
-        this.RootProcessInstanceId = instance.getRootProcessInstanceId();
 
         this.ProcessDefinitionId =  instance.getProcessDefinitionId();
 
@@ -71,8 +53,6 @@ public class ProcessInstanceVO {
 
         this.BusinessKey = instance.getBusinessKey();
 
-        this.isSuspended = instance.isSuspended();
-
         this.ProcessVariables = instance.getProcessVariables();
 
         this.TenantId = instance.getTenantId();
@@ -82,6 +62,8 @@ public class ProcessInstanceVO {
         this.Description = instance.getDescription();
 
         this.StartTime = instance.getStartTime();
+
+        this.EndTime = instance.getEndTime();
 
         this.StartUserId = instance.getStartUserId();
     }
