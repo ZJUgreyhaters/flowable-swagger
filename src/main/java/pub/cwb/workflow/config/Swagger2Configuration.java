@@ -57,7 +57,7 @@ public class Swagger2Configuration {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot Swagger2 RESTful APIs for Project [workflow].")
+                .title("RESTful APIs for Project [workflow].")
                 .description("For more info : https://www.baidu.com")
                 .termsOfServiceUrl("https://www.google.com")
                 .contact(new Contact("wbchen", "", "3150103635@zju.edu.cn"))
