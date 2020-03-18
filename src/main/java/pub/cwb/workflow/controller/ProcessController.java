@@ -3,17 +3,15 @@ package pub.cwb.workflow.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
-import org.flowable.bpmn.model.Process;
-import org.flowable.engine.RepositoryService;
 import org.flowable.engine.repository.Deployment;
+import org.flowable.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pub.cwb.auth.pojo.ResponseBase;
+import pub.cwb.workflow.pojo.req.BaseReq;
+import pub.cwb.workflow.pojo.view.ProcessInstanceVO;
 import pub.cwb.workflow.service.impl.ProcessServiceImpl;
 import pub.cwb.workflow.util.FlowableEngine;
 
@@ -33,7 +31,7 @@ public class ProcessController {
 
     @GetMapping("/deploy")
     @ApiOperation(value = "Deploy process.", notes = "部署流程")
-    public ResponseBase deployment(@RequestParam String processDefId) {
+    public ResponseBase deployment(@RequestParam(required = false) String processDefId) {
         Deployment deployment;
         try{
             deployment = FlowableEngine.getEngine().getRepositoryService().createDeployment()
@@ -50,7 +48,7 @@ public class ProcessController {
 
     @GetMapping("/deployquery")
     @ApiOperation(value = "Process Deployment Query.", notes = "查询已部署流程")
-    public ResponseBase deployquery(@RequestParam String proKey) {
+    public ResponseBase deployquery(@RequestParam(required = true) String proKey) {
         ResponseBase<List<Map>> re = new ResponseBase<>();
         // param check
         if(StringUtils.isBlank(proKey)) {
@@ -85,12 +83,34 @@ public class ProcessController {
         return re;
     }
 
-    @GetMapping("/create")
-    @ApiOperation(value = "Create a Processes.", notes = "创建一个流程实例")
-    public List listAll() {
-        List<Process> re = new ArrayList<>();
+    @PostMapping("/create")
+    @ApiOperation(value = "Create a Processes Instance.", notes = "创建一个流程实例")
+    public ResponseBase createProcessInstance(@RequestBody BaseReq req) {
+        ResponseBase<ProcessInstanceVO> re = new ResponseBase<>();
 
+        if (StringUtils.isBlank(req.getProcessDefKey()) || req.getGlobalVars() == null) {
+            re.setCode("500");
+            re.setMsg("param is not valid.");
+            return re;
+        }
 
+        List<Deployment> deployments = FlowableEngine.getEngine()
+                .getRepositoryService()
+                .createDeploymentQuery()
+                .processDefinitionKey(req.getProcessDefKey())
+                .list();
+
+        if (deployments == null || deployments.size() == 0){
+            re.setMsg("没有该流程,流程尚未创建");
+            re.setCode("500");
+            return  re;
+        }
+
+        ProcessInstance instance = FlowableEngine.getEngine()
+                .getRuntimeService()
+                .startProcessInstanceByKey(req.getProcessDefKey(),req.getGlobalVars());
+
+        re.setData(new ProcessInstanceVO(instance));
 
         return re;
     }
