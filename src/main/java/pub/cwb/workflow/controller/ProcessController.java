@@ -34,17 +34,18 @@ public class ProcessController {
 
     @GetMapping("/deploy")
     @ApiOperation(value = "/deploy", notes = "部署流程")
-    public String deployment(@RequestParam String processDefId) {
+    public ResponseBase deployment(@RequestParam String processDefId) {
         try{
             Deployment deployment = FlowableEngine.getEngine().getRepositoryService().createDeployment()
                     .name("test")
                     .addClasspathResource("process/test1.bpmn20.xml")
                     .deploy();
+            logger.info("Deploy ID : " + deployment.getId());
         } catch (Exception e) {
-            return new ResponseBase<>("500", e.getMessage()).toString();
+            return new ResponseBase<>("500", e.getMessage());
         }
 
-        return new ResponseBase<>().toString();
+        return new ResponseBase<>();
     }
 
     @GetMapping("/create")
