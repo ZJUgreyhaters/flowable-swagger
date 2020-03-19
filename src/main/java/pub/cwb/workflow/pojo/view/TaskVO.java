@@ -19,9 +19,9 @@ public class TaskVO {
 
     private int priority;
 
-    private String Owner;
+    private String owner;
 
-    private String Assignee;
+    private String assignee;
 
     private String ProcessInstanceId;
 
@@ -70,9 +70,9 @@ public class TaskVO {
 
         this.priority =  task.getPriority();
 
-        this.Owner = task.getOwner();
+        this.owner = task.getOwner();
 
-        this.Assignee = task.getAssignee();
+        this.assignee = task.getAssignee();
 
         this.ProcessInstanceId = task.getProcessInstanceId();
 

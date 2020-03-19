@@ -7,12 +7,10 @@ import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pub.cwb.auth.pojo.ResponseBase;
 import pub.cwb.workflow.pojo.req.BaseReq;
 import pub.cwb.workflow.pojo.view.ProcessInstanceVO;
-import pub.cwb.workflow.service.impl.ProcessServiceImpl;
 import pub.cwb.workflow.util.FlowableEngine;
 
 import java.util.*;
@@ -25,9 +23,6 @@ import java.util.*;
 @RequestMapping("pub/wf/process")
 public class ProcessController {
     private static final Logger logger = LoggerFactory.getLogger(ProcessController.class);
-
-    @Autowired
-    private ProcessServiceImpl processService;
 
     @GetMapping("/deploy")
     @ApiOperation(value = "Deploy process.", notes = "部署流程")
