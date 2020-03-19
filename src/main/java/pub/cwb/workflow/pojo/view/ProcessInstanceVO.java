@@ -6,83 +6,84 @@ import org.flowable.engine.runtime.ProcessInstance;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * @author athena
+ */
 @Data
 public class ProcessInstanceVO {
-    private String Id;
+    private String id;
 
-    private boolean isEnded;
+    private boolean ended;
 
-    private String ActivityId;
+    private String activityId;
 
-    private String ProcessInstanceId;
+    private String processInstanceId;
 
-    private String ParentId;
+    private String parentId;
 
-    private String SuperExecutionId;
+    private String superExecutionId;
 
-    private String RootProcessInstanceId;
+    private String rootProcessInstanceId;
 
-    private String ProcessDefinitionId;
+    private String processDefinitionId;
 
-    private String ProcessDefinitionName;
+    private String processDefinitionName;
 
-    private String ProcessDefinitionKey;
+    private String processDefinitionKey;
 
-    private Integer ProcessDefinitionVersion;
+    private Integer processDefinitionVersion;
 
-    private String DeploymentId;
+    private String deploymentId;
 
-    private String BusinessKey;
+    private String businessKey;
 
-    private boolean isSuspended;
+    private boolean suspended;
 
-    private Map<String, Object> ProcessVariables;
+    private Map<String, Object> processVariables;
 
-    private String TenantId;
+    private String tenantId;
 
-    private String Name;
+    private String name;
 
-    private String Description;
+    private String description;
 
-    private Date StartTime;
+    private Date startTime;
 
-    private String StartUserId;
-
-    ProcessInstanceVO() {}
+    private String startUserId;
 
     public ProcessInstanceVO(ProcessInstance instance) {
-        this.Id = instance.getId();
-        this.isEnded = instance.isEnded();
-        this.ActivityId = instance.getActivityId();
-        this.ProcessInstanceId = instance.getProcessInstanceId();
-        this.ParentId = instance.getParentId();
-        this.SuperExecutionId = instance.getSuperExecutionId();
-        this.RootProcessInstanceId = instance.getRootProcessInstanceId();
+        this.id = instance.getId();
+        this.ended = instance.isEnded();
+        this.activityId = instance.getActivityId();
+        this.processInstanceId = instance.getProcessInstanceId();
+        this.parentId = instance.getParentId();
+        this.superExecutionId = instance.getSuperExecutionId();
+        this.rootProcessInstanceId = instance.getRootProcessInstanceId();
 
-        this.ProcessDefinitionId =  instance.getProcessDefinitionId();
+        this.processDefinitionId =  instance.getProcessDefinitionId();
 
-        this.ProcessDefinitionName = instance.getProcessDefinitionName();
+        this.processDefinitionName = instance.getProcessDefinitionName();
 
-        this.ProcessDefinitionKey = instance.getProcessDefinitionKey();
+        this.processDefinitionKey = instance.getProcessDefinitionKey();
 
-        this.ProcessDefinitionVersion = instance.getProcessDefinitionVersion();
+        this.processDefinitionVersion = instance.getProcessDefinitionVersion();
 
-        this.DeploymentId = instance.getDeploymentId();
+        this.deploymentId = instance.getDeploymentId();
 
-        this.BusinessKey = instance.getBusinessKey();
+        this.businessKey = instance.getBusinessKey();
 
-        this.isSuspended = instance.isSuspended();
+        this.suspended = instance.isSuspended();
 
-        this.ProcessVariables = instance.getProcessVariables();
+        this.processVariables = instance.getProcessVariables();
 
-        this.TenantId = instance.getTenantId();
+        this.tenantId = instance.getTenantId();
 
-        this.Name =  instance.getName();
+        this.name =  instance.getName();
 
-        this.Description = instance.getDescription();
+        this.description = instance.getDescription();
 
-        this.StartTime = instance.getStartTime();
+        this.startTime = instance.getStartTime();
 
-        this.StartUserId = instance.getStartUserId();
+        this.startUserId = instance.getStartUserId();
     }
 }

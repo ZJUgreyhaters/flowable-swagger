@@ -58,7 +58,7 @@ public class TaskController {
         }
 
         re.setData(datas);
-        logger.info(re.toString());
+        logger.info("data: {0}", re.toString());
         return re;
     }
 
@@ -95,7 +95,7 @@ public class TaskController {
         }
 
         re.setData(datas);
-        logger.info(re.toString());
+        logger.info("data: {0}", re.toString());
         return re;
     }
 
@@ -127,7 +127,7 @@ public class TaskController {
         }
 
         re.setData(datas);
-        logger.info(re.toString());
+        logger.info("data: {0}", re.toString());
         return re;
     }
 

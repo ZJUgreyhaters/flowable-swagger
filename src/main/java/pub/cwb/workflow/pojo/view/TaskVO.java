@@ -6,15 +6,18 @@ import org.flowable.task.api.Task;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * @author athena
+ */
 @Data
 public class TaskVO {
-    private String Id;
+    private String id;
 
-    private String Name;
+    private String name;
 
-    private String Description;
+    private String description;
 
-    private int Priority;
+    private int priority;
 
     private String Owner;
 
@@ -59,13 +62,13 @@ public class TaskVO {
     private Date ClaimTime;
     
     public TaskVO(Task task) {
-        this.Id = task.getId();
+        this.id = task.getId();
 
-        this.Name = task.getName();
+        this.name = task.getName();
 
-        this.Description = task.getDescription();
+        this.description = task.getDescription();
 
-        this.Priority =  task.getPriority();
+        this.priority =  task.getPriority();
 
         this.Owner = task.getOwner();
 
