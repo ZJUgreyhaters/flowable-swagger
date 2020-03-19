@@ -1,11 +1,9 @@
 package pub.cwb.workflow.pojo.view;
 
 import lombok.Data;
-import org.flowable.identitylink.api.IdentityLinkInfo;
 import org.flowable.task.api.Task;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 @Data

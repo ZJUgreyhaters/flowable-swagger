@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
  * @author athena
  */
 @Data
-public class AssigneTaskReq extends BaseReq {
+public class CompleteTaskReq extends BaseReq {
     @NotBlank
     private String taskId;
 }

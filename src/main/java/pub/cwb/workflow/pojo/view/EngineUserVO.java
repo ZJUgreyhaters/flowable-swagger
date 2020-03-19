@@ -6,33 +6,33 @@ import org.flowable.idm.api.User;
 @Data
 public class EngineUserVO {
     
-    private String Id;
+    private String id;
 
-    private String FirstName;
+    private String firstName;
 
-    private String LastName;
+    private String lastName;
 
-    private String DisplayName;
+    private String displayName;
     
-    private String Email;
+    private String email;
 
-    private String Password;
+    private String password;
 
-    private String TenantId;
+    private String tenantId;
     
     public EngineUserVO(User user) {
-        this.Id = user.getId();
+        this.id = user.getId();
 
-        this.FirstName = user.getFirstName();
+        this.firstName = user.getFirstName();
 
-        this.LastName = user.getLastName();
+        this.lastName = user.getLastName();
 
-        this.DisplayName = user.getDisplayName();
+        this.displayName = user.getDisplayName();
 
-        this.Email = user.getEmail();
+        this.email = user.getEmail();
 
-        this.Password = user.getPassword();
+        this.password = user.getPassword();
 
-        this.TenantId = user.getTenantId();
+        this.tenantId = user.getTenantId();
     }
 }

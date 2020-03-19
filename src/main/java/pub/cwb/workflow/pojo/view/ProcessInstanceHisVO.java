@@ -6,65 +6,66 @@ import org.flowable.engine.history.HistoricProcessInstance;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * @author athena
+ */
 @Data
 public class ProcessInstanceHisVO {
-    private String Id;
+    private String id;
 
-    private String ProcessDefinitionId;
+    private String processDefinitionId;
 
-    private String ProcessDefinitionName;
+    private String processDefinitionName;
 
-    private String ProcessDefinitionKey;
+    private String processDefinitionKey;
 
-    private Integer ProcessDefinitionVersion;
+    private Integer processDefinitionVersion;
 
-    private String DeploymentId;
+    private String deploymentId;
 
-    private String BusinessKey;
+    private String businessKey;
 
-    private boolean isSuspended;
+    private Map<String, Object> processVariables;
 
-    private Map<String, Object> ProcessVariables;
+    private String tenantId;
 
-    private String TenantId;
+    private String name;
 
-    private String Name;
+    private String description;
 
-    private String Description;
+    private Date startTime;
 
-    private Date StartTime;
+    private Date endTime;
 
-    private Date EndTime;
-
-    private String StartUserId;
+    private String startUserId;
 
     public ProcessInstanceHisVO(HistoricProcessInstance instance) {
-        this.Id = instance.getId();
+        this.id = instance.getId();
 
-        this.ProcessDefinitionId =  instance.getProcessDefinitionId();
+        this.processDefinitionId =  instance.getProcessDefinitionId();
 
-        this.ProcessDefinitionName = instance.getProcessDefinitionName();
+        this.processDefinitionName = instance.getProcessDefinitionName();
 
-        this.ProcessDefinitionKey = instance.getProcessDefinitionKey();
+        this.processDefinitionKey = instance.getProcessDefinitionKey();
 
-        this.ProcessDefinitionVersion = instance.getProcessDefinitionVersion();
+        this.processDefinitionVersion = instance.getProcessDefinitionVersion();
 
-        this.DeploymentId = instance.getDeploymentId();
+        this.deploymentId = instance.getDeploymentId();
 
-        this.BusinessKey = instance.getBusinessKey();
+        this.businessKey = instance.getBusinessKey();
 
-        this.ProcessVariables = instance.getProcessVariables();
+        this.processVariables = instance.getProcessVariables();
 
-        this.TenantId = instance.getTenantId();
+        this.tenantId = instance.getTenantId();
 
-        this.Name =  instance.getName();
+        this.name =  instance.getName();
 
-        this.Description = instance.getDescription();
+        this.description = instance.getDescription();
 
-        this.StartTime = instance.getStartTime();
+        this.startTime = instance.getStartTime();
 
-        this.EndTime = instance.getEndTime();
+        this.endTime = instance.getEndTime();
 
-        this.StartUserId = instance.getStartUserId();
+        this.startUserId = instance.getStartUserId();
     }
 }
