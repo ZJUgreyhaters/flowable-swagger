@@ -27,11 +27,14 @@ public class ProcessController {
     @GetMapping("/deploy")
     @ApiOperation(value = "Deploy process.", notes = "部署流程")
     public ResponseBase deployment(@RequestParam(required = false) String processDefId) {
+        String path = "process/" + processDefId + ".bpmn20.xml";
+
         Deployment deployment;
         try{
             deployment = FlowableEngine.getEngine().getRepositoryService().createDeployment()
                     .name("test")
-                    .addClasspathResource("process/test1.bpmn20.xml")
+                    .addClasspathResource(path)
+                    .tenantId("WF-test")
                     .deploy();
             logger.info("Deploy ID : " + deployment.getId());
         } catch (Exception e) {
@@ -103,7 +106,7 @@ public class ProcessController {
 
         ProcessInstance instance = FlowableEngine.getEngine()
                 .getRuntimeService()
-                .startProcessInstanceByKey(req.getProcessDefKey(),req.getGlobalVars());
+                .startProcessInstanceByKey(req.getProcessDefKey(), req.getGlobalVars());
 
         re.setData(new ProcessInstanceVO(instance));
 

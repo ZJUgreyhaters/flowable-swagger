@@ -174,9 +174,10 @@ public class TaskController {
         gloabVars.put("approve", true);
 
         try {
-            FlowableEngine.getEngine().getTaskService().complete(req.getTaskId(), gloabVars);
+            FlowableEngine.getEngine().getTaskService().complete(req.getTaskId(), req.getGlobalVars());
         } catch (Exception e) {
             re.setMsg("无法完成任务");
+            return re;
         }
         re.setMsg("success complete task.");
         return re;

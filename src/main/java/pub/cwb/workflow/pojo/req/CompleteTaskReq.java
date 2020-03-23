@@ -11,4 +11,6 @@ import javax.validation.constraints.NotBlank;
 public class CompleteTaskReq extends BaseReq {
     @NotBlank
     private String taskId;
+
+    private String executionId;
 }
