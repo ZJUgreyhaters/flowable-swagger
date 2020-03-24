@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author athena
+ */
 @Service
 public class HisService {
     private static final Logger logger = LoggerFactory.getLogger(HisService.class);
@@ -33,8 +36,7 @@ public class HisService {
      */
     public List<? extends Object> getHisTask(HisTaskReq req) {
         logger.info("获取任务: " + req.toString());
-        if(req == null ||
-                (StringUtils.isNotBlank(req.getUserId()) &&
+        if((StringUtils.isNotBlank(req.getUserId()) &&
                         TaskState.notAssigined.getFlag().equals(req.getIsAssigned()))) {
             throw new RuntimeException("参数错误");
         }
@@ -70,7 +72,10 @@ public class HisService {
         }
     }
 
-
+    /**
+     * 获取历史流程实例
+     * @return
+     */
     public List<? extends Object> getHisProcessInstance() {
 
         List<HistoricProcessInstance> processInstances = FlowableEngine.getEngine()

@@ -16,6 +16,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author athena
+ */
 @Service
 public class RunTimeService {
     private static final Logger logger = LoggerFactory.getLogger(RunTimeService.class);
@@ -23,6 +26,11 @@ public class RunTimeService {
     @Value("${wf.process.defkey}")
     private String defKey;
 
+    /**
+     * 获取流程变量/任务变量
+     * @param req
+     * @return
+     */
     public Map getVars(VarsQryReq req) {
         logger.info("获取变量: " + req.toString());
         if (StringUtils.isBlank(req.getExecutionId()) && StringUtils.isBlank(req.getTaskId()) ) {
@@ -37,15 +45,17 @@ public class RunTimeService {
 
     }
 
+    /**
+     * 创建流程实例
+     * @param req
+     * @return
+     */
     public ProcessInstanceVO createProcess(BaseReq req) {
-        if (StringUtils.isBlank(req.getProcessDefKey()) || req.getGlobalVars() == null) {
-            throw new RuntimeException("参数错误");
-        }
 
         List<Deployment> deployments = FlowableEngine.getEngine()
                 .getRepositoryService()
                 .createDeploymentQuery()
-                .processDefinitionKey(req.getProcessDefKey())
+                .processDefinitionKey(defKey)
                 .list();
 
         if (deployments == null || deployments.size() == 0){
@@ -54,11 +64,15 @@ public class RunTimeService {
 
         ProcessInstance instance = FlowableEngine.getEngine()
                 .getRuntimeService()
-                .startProcessInstanceByKey(req.getProcessDefKey(), req.getGlobalVars());
+                .startProcessInstanceByKey(defKey, req.getGlobalVars());
 
         return new ProcessInstanceVO(instance);
     }
 
+    /**
+     * 获取流程实例
+     * @return
+     */
     public List<? extends Object> getProcessInstance() {
 
         List<ProcessInstance> processInstances = FlowableEngine.getEngine()
