@@ -49,9 +49,14 @@ public class HisService {
         } else if (TaskState.notAssigined.getFlag().equals(req.getIsAssigned())) {
             // 查询未分配用户的任务 0 - not assigned
             tasks = FlowableEngine.getEngine().getTaskService().createTaskQuery().processDefinitionKey(defKey).taskUnassigned().list();
-        } else if (StringUtils.isNotBlank(req.getUserId())) {
-            tasks = FlowableEngine.getEngine().getTaskService().createTaskQuery().processDefinitionKey(defKey).taskInvolvedUser(req.getUserId()).list();
+        } else if (StringUtils.isNotBlank(req.getUserId()) && StringUtils.isNotBlank(req.getProcessInstanceId())) {
+            tasks = FlowableEngine.getEngine().getTaskService().createTaskQuery().
+                    processDefinitionKey(defKey).processInstanceId(req.getProcessInstanceId()).taskInvolvedUser(req.getUserId()).list();
+        } else {
+            tasks = FlowableEngine.getEngine().getTaskService().createTaskQuery().
+                    processDefinitionKey(defKey).taskInvolvedUser(req.getUserId()).list();
         }
+
 
         List<TaskVO> datas = new ArrayList<>();
         List<HistoricTaskVO> hisDatas = new ArrayList<>();
