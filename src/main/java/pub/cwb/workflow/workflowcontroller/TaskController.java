@@ -10,7 +10,7 @@ import pub.cwb.auth.pojo.ResponseBase;
 import pub.cwb.workflow.pojo.HisTaskReq;
 import pub.cwb.workflow.pojo.VarsQryReq;
 import pub.cwb.workflow.pojo.AssigneTaskReq;
-import pub.cwb.workflow.pojo.req.CompleteTaskReq;
+import pub.cwb.workflow.pojo.CompleteTaskReq;
 import pub.cwb.workflow.service.impl.HisService;
 import pub.cwb.workflow.service.impl.ReposityService;
 import pub.cwb.workflow.service.impl.RunTimeService;

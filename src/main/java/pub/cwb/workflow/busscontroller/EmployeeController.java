@@ -43,6 +43,18 @@ public class EmployeeController {
     @Autowired
     private TaskService taskService;
 
+    @GetMapping("/todoList")
+    @ApiOperation(value = "申请用户 待办列表")
+    public ResponseBase todoList(@RequestParam String userId) {
+
+        List<Task> tasks = FlowableEngine.getEngine().getTaskService().createTaskQuery()
+                .processDefinitionKey(defKey).taskDefinitionKey("HolidayRequest")
+                .taskInvolvedUser(userId)
+                .list();
+
+        return new ResponseBase(tasks);
+    }
+
     @PostMapping("/requestHoliday")
     @ApiOperation(value = "提交假期申请")
     public ResponseBase requestHoliday(@RequestBody HolidayReq req) {
@@ -50,6 +62,7 @@ public class EmployeeController {
         Map<String, Object> gloableVars =  new HashMap<>();
         gloableVars.put("employee", req.getUserId());
 
+        createProcess.setGlobalVars(gloableVars);
         // 创建流程实例
         ProcessInstanceVO process = runTimeService.createProcess(createProcess);
 

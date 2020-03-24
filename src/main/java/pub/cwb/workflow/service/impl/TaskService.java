@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pub.cwb.auth.pojo.ResponseBase;
 import pub.cwb.workflow.pojo.AssigneTaskReq;
-import pub.cwb.workflow.pojo.req.CompleteTaskReq;
+import pub.cwb.workflow.pojo.CompleteTaskReq;
 import pub.cwb.workflow.util.FlowableEngine;
 
 /**

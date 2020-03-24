@@ -1,7 +1,6 @@
-package pub.cwb.workflow.pojo.req;
+package pub.cwb.workflow.pojo;
 
 import lombok.Data;
-import pub.cwb.workflow.pojo.BaseReq;
 
 import javax.validation.constraints.NotBlank;
 
