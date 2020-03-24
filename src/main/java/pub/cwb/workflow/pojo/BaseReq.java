@@ -1,4 +1,4 @@
-package pub.cwb.workflow.pojo.req;
+package pub.cwb.workflow.pojo;
 
 import lombok.Data;
 
@@ -17,6 +17,5 @@ public class BaseReq {
     private String processDefKey;
 
     private String userId;
-
 
 }
