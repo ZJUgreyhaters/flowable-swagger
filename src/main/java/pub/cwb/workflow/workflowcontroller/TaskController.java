@@ -7,6 +7,7 @@ import org.flowable.task.api.Task;
 import org.flowable.task.api.history.HistoricTaskInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import pub.cwb.auth.pojo.ResponseBase;
 import pub.cwb.workflow.pojo.req.AssigneTaskReq;
@@ -31,6 +32,10 @@ import java.util.Map;
 public class TaskController {
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
+
+    @Value("${wf.process.defkey}")
+    private String defKey;
+
     @GetMapping("/HisTask")
     @ApiOperation(value = "Query Historic task.", notes = "查询历史任务")
     public ResponseBase hisTask() {
@@ -40,6 +45,7 @@ public class TaskController {
         try{
             tasks = FlowableEngine.getEngine().getHistoryService()
                     .createHistoricTaskInstanceQuery()
+                    .processDefinitionKey(defKey)
                     .orderByProcessDefinitionId()
                     .asc()
                     .list();

@@ -7,6 +7,7 @@ import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,8 @@ import java.util.List;
 public class InstanceController {
     private static final Logger logger = LoggerFactory.getLogger(ProcessController.class);
 
+    @Value("${wf.process.defkey}")
+    private String defKey;
 
     @GetMapping("/listAllProIns")
     @ApiOperation(value = "Get all process instances", notes = "获取运行的流程实例")
@@ -37,6 +40,7 @@ public class InstanceController {
         List<ProcessInstance> processInstances = FlowableEngine.getEngine()
                 .getRuntimeService()
                 .createProcessInstanceQuery()
+                .processDefinitionKey(defKey)
                 .orderByProcessDefinitionId().desc()
                 .list();
 
@@ -62,6 +66,7 @@ public class InstanceController {
         List<HistoricProcessInstance> processInstances = FlowableEngine.getEngine()
                 .getHistoryService()
                 .createHistoricProcessInstanceQuery()
+                .processDefinitionKey(defKey)
                 .orderByProcessDefinitionId()
                 .desc()
                 .list();

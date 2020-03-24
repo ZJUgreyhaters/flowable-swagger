@@ -34,7 +34,6 @@ public class ProcessController {
             deployment = FlowableEngine.getEngine().getRepositoryService().createDeployment()
                     .name("test")
                     .addClasspathResource(path)
-                    .tenantId("WF-test")
                     .deploy();
             logger.info("Deploy ID : " + deployment.getId());
         } catch (Exception e) {

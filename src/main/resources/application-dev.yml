@@ -8,9 +8,19 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml
   configuration:
+    ## 打印sql语句
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+## 日志
 logging:
+  ## 日志级别
   levels: info
+  ## 日志文件路经
   file:
     path: /home/athena/IdeaProjects/log/workflow
+
+
+## 为了方便调试，接口只会返回该{defkey}流程相关的数据
+wf:
+  process:
+    defkey: HolidayProcess2
