@@ -27,6 +27,6 @@ spring.datasource.password=******
     见项目配置
 
 + process
-    ![process Modeler](./mdDoc/Screenshot from 2020-03-25 17-14-47.png)
+    ![process Modeler](https://github.com/ZJUgreyhaters/flowable-swagger/blob/master/mdDoc/Screenshot%20from%202020-03-25%2017-14-47.png)
 + swagger api
-    ![swagger](./mdDoc/Screenshot from 2020-03-25 17-15-05.png)
+    ![swagger](https://github.com/ZJUgreyhaters/flowable-swagger/blob/master/mdDoc/Screenshot%20from%202020-03-25%2017-15-05.png)
