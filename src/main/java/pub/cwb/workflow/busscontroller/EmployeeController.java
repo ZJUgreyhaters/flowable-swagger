@@ -15,12 +15,14 @@ import pub.cwb.workflow.pojo.BaseReq;
 import pub.cwb.workflow.pojo.HisTaskReq;
 import pub.cwb.workflow.pojo.HolidayReq;
 import pub.cwb.workflow.pojo.view.ProcessInstanceVO;
+import pub.cwb.workflow.pojo.view.TaskVO;
 import pub.cwb.workflow.service.impl.HisService;
 import pub.cwb.workflow.service.impl.ReposityService;
 import pub.cwb.workflow.service.impl.RunTimeService;
 import pub.cwb.workflow.service.impl.TaskService;
 import pub.cwb.workflow.util.FlowableEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,10 +51,19 @@ public class EmployeeController {
 
         List<Task> tasks = FlowableEngine.getEngine().getTaskService().createTaskQuery()
                 .processDefinitionKey(defKey).taskDefinitionKey("HolidayRequest")
-                .taskInvolvedUser(userId)
+                //.taskInvolvedUser(userId)
                 .list();
 
-        return new ResponseBase(tasks);
+        List<TaskVO> datas = new ArrayList<>();
+        for (Task task : tasks) {
+            TaskVO tmp = new TaskVO(task);
+
+            tmp.setProcessVariables(FlowableEngine.getEngine().getRuntimeService().getVariables(task.getExecutionId()));
+
+            datas.add(tmp);
+        }
+
+        return new ResponseBase(datas);
     }
 
     @PostMapping("/requestHoliday")

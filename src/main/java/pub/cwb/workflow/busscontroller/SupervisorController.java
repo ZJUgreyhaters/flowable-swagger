@@ -44,7 +44,7 @@ public class SupervisorController {
 
         List<Task> tasks = FlowableEngine.getEngine().getTaskService().createTaskQuery()
                 .processDefinitionKey(defKey).taskDefinitionKey("SupervisorApproval")
-                .taskInvolvedUser(userId)
+                //.taskInvolvedUser(userId)
                 .list();
 
         List<TaskVO> datas = new ArrayList<>();
@@ -68,7 +68,7 @@ public class SupervisorController {
 
         Map<String, Object> vars = new HashMap<>();
         vars.put("deny", false);
-        vars.put("SupervisorComment", req.getUserId() + "says : " + req.getComment());
+        vars.put("SupervisorComment", req.getUserId() + " says : " + req.getComment());
 
         completeTaskReq.setGlobalVars(vars);
 
